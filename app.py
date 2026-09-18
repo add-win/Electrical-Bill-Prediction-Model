@@ -14,16 +14,15 @@ st.title("Electric Bill Prediction based on AC Units")
 ac = st.number_input(
     "Enter the AC Units",
     min_value=1.0,
-    max_value=100.0,
+    max_value=150.0,
     value=1.0
 )
 
-if st.button("Predict"):
+if ac < 1 or ac > 150:
+    st.info("Cannot predict: AC units must be between 1 and 100.")
 
-    if ac < 1 or ac > 150:
-        st.info("Cannot predict: AC units must be between 1 and 100.")
-
-    else:
+else:
+    if st.button("Predict"):
         input_data = pd.DataFrame({
             "AC_Units": [ac]
         })
