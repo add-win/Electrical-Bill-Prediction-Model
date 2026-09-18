@@ -1,8 +1,13 @@
 import streamlit as st
 import joblib
 import pandas as pd
+from sklearn.preprocessing import PolynomialFeatures
 
 model = joblib.load("Electric_Bill_AC_model.pkl")
+
+poly = PolynomialFeatures(degree=2)
+
+poly.fit([[1]])
 
 st.title("Electric Bill Prediction based on AC Units")
 
@@ -22,15 +27,13 @@ if st.button("Predict"):
         input_data = pd.DataFrame({
             "AC_Units": [ac]
         })
-      
-        from sklearn.preprocessing import PolynomialFeatures
-        
-        poly = PolynomialFeatures(degree=2)
 
         new_data_poly = poly.transform(input_data)
-        
+
         new_pred = model.predict(new_data_poly)
-      
+
         predicted_price = new_pred[0]
 
-        st.success(f"Predicted Electric Bill: ₹{predicted_price:,.2f}")
+        st.success(
+            f"Predicted Electric Bill: ₹{predicted_price:,.2f}"
+        )
