@@ -23,9 +23,8 @@ if st.button("Predict"):
             "AC_Units": [ac]
         })
       
-        new_data_poly = poly.transform(input_data)
       
-        new_pred = model.predict(new_data_poly)
+        new_pred = model.predict(input_data)
       
         predicted_price = new_pred[0]
 
