@@ -23,8 +23,13 @@ if st.button("Predict"):
             "AC_Units": [ac]
         })
       
-      
-        new_pred = model.predict(input_data)
+        from sklearn.preprocessing import PolynomialFeatures
+        
+        poly = PolynomialFeatures(degree=2)
+
+        new_data_poly = poly.transform(input_data)
+        
+        new_pred = model.predict(new_data_poly)
       
         predicted_price = new_pred[0]
 
