@@ -6,7 +6,7 @@ from sklearn.preprocessing import PolynomialFeatures
 model = joblib.load("Electric_Bill_AC_model.pkl")
 
 poly = PolynomialFeatures(degree=2)
-poly.fit([[1]])
+poly.fit([[1,1]])
 
 st.title("Electric Bill Prediction based on AC and Fan Units")
 
