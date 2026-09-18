@@ -18,21 +18,19 @@ ac = st.number_input(
     value=1.0
 )
 
-if ac < 1 or ac > 150:
+if st.button("Predict") and (ac < 1 or ac > 150):
     st.info("Cannot predict: AC units must be between 1 and 100.")
 
 else:
-    if st.button("Predict"):
-        input_data = pd.DataFrame({
-            "AC_Units": [ac]
-        })
+    input_data = pd.DataFrame({
+        "AC_Units": [ac]
+    })
 
-        new_data_poly = poly.transform(input_data)
+    new_data_poly = poly.transform(input_data)
+    new_pred = model.predict(new_data_poly)
 
-        new_pred = model.predict(new_data_poly)
+    predicted_price = new_pred[0]
 
-        predicted_price = new_pred[0]
-
-        st.info(
-            f"Predicted Electric Bill: ₹{predicted_price:,.2f}"
-        )
+    st.info(
+        f"Predicted Electric Bill: ₹{predicted_price:,.2f}"
+    )
