@@ -15,7 +15,7 @@ ac = st.number_input(
 
 if st.button("Predict"):
 
-    if ac < 1 or area > 100:
+    if ac < 1 or ac > 100:
         st.error("Cannot predict: AC units must be between 1 and 100.")
 
     else:
